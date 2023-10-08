@@ -1,16 +1,35 @@
 <script setup>
+import {ref} from 'vue'
+import { onBeforeMount } from 'vue'
+import SiteService from '../services/SiteService'
+
+const sites = ref([])
+
+function setSites(){
+    SiteService.getSites().then(
+        result => sites.value = result
+    )
+}
+
+onBeforeMount(()=>setSites())
+
+console.log(sites)
 
 </script>
 <template>
-    <v-container
-      class="bg-surface-variant mb-6">
-      <v-row align="start" no-gutters style="height: 150px;">
-        <v-col v-for="n in 3" :key="n">
-          <v-sheet class="pa-2 ma-2">
-            Contenido
-          </v-sheet>
-        </v-col>
-      </v-row>
+    <v-container>
+      <v-table>
+        <thead>
+          <th>Nombre</th>
+          <th>URL</th>
+        </thead>
+        <tbody>
+          <tr v-for="site in sites" :key="site.id">
+            <td>{{ site.name }}</td>
+            <td>{{ site.url }}</td>
+          </tr>  
+        </tbody>
+      </v-table>
     </v-container>
 </template>
 <style>
