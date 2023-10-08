@@ -33,5 +33,5 @@ console.log(sites)
     </v-container>
 </template>
 <style>
-
+  @import "../assets/styles/General.css";
 </style>
