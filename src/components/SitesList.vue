@@ -20,7 +20,7 @@ console.log(sites)
 <template>
   <Nav></Nav>
   <v-container>
-    <v-btn>Nueva URL</v-btn>
+    <v-btn><RouterLink to="/sites/new">Nueva URL</RouterLink></v-btn>
     <v-table>
       <thead>
         <th>Nombre</th>
@@ -34,7 +34,7 @@ console.log(sites)
           <td>{{ site.url }}</td>
           <td>{{ site.max_depth }}</td>
           <td>{{ site.frequency }}</td>
-          <td>Ingresar</td>
+          <td><RouterLink :to="{ name: 'site-detail', params: {id: site.id}}">Ingresar</RouterLink></td>
         </tr>  
       </tbody>
     </v-table>
