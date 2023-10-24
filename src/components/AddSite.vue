@@ -4,10 +4,10 @@ import SiteService from '../services/SiteService'
 import Nav from '../components/Nav.vue';
 
 const site = ref({
-  'nombre':'',
+  'name':'',
   'url':'',
-  'niveles':'',
-  'frecuencia':'',
+  'max_depth':'',
+  'frequency':'',
 })
 
 const error = ref(false)
@@ -45,7 +45,7 @@ console.log(site)
       </v-alert>
       <v-form>
         <v-text-field
-          v-model="site.nombre"
+          v-model="site.name"
           label="Nombre"
           required>
         </v-text-field>
@@ -55,12 +55,12 @@ console.log(site)
           required>
         </v-text-field>
         <v-text-field
-          v-model.number="site.niveles"
+          v-model.number="site.max_depth"
           label="Niveles"
           required>
         </v-text-field>
         <v-text-field
-          v-model.number="site.frecuencia"
+          v-model="site.frequency"
           label="Frecuencia"
           required>
         </v-text-field>

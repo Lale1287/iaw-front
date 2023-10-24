@@ -23,7 +23,7 @@ console.log(site)
 <template>
   <Nav></Nav>
   <v-container>
-    <h1>{site.name}</h1>
+    <h1>{{site.name}}</h1>
     <v-sheet v-if='site'>
       Detalle      
     </v-sheet>
