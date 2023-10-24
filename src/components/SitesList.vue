@@ -2,6 +2,7 @@
 import {ref} from 'vue'
 import { onBeforeMount } from 'vue'
 import SiteService from '../services/SiteService'
+import Nav from '../components/Nav.vue';
 
 const sites = ref([])
 
@@ -17,21 +18,31 @@ console.log(sites)
 
 </script>
 <template>
-    <v-container>
-      <v-table>
-        <thead>
-          <th>Nombre</th>
-          <th>URL</th>
-        </thead>
-        <tbody>
-          <tr v-for="site in sites" :key="site.id">
-            <td>{{ site.name }}</td>
-            <td>{{ site.url }}</td>
-          </tr>  
-        </tbody>
-      </v-table>
-    </v-container>
+  <Nav></Nav>
+  <v-container>
+    <v-btn>Nueva URL</v-btn>
+    <v-table>
+      <thead>
+        <th>Nombre</th>
+        <th>URL</th>
+        <th>Niveles</th>
+        <th>Frecuencia</th>
+      </thead>
+      <tbody>
+        <tr v-for="site in sites" :key="site.id">
+          <td>{{ site.name }}</td>
+          <td>{{ site.url }}</td>
+          <td>{{ site.max_depth }}</td>
+          <td>{{ site.frequency }}</td>
+          <td>Ingresar</td>
+        </tr>  
+      </tbody>
+    </v-table>
+  </v-container>
 </template>
 <style>
   @import "../assets/styles/General.css";
+  .v-btn{
+    width: fit-content;
+  }
 </style>
