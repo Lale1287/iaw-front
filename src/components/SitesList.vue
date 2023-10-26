@@ -19,25 +19,28 @@ console.log(sites)
 <template>
   <v-container>
     <v-btn><RouterLink to="/sites/new">Nueva URL</RouterLink></v-btn>
-    <h1>Tus sitios</h1>
-    <v-divider></v-divider>
-    <v-table>
-      <thead>
-        <th>Nombre</th>
-        <th>URL</th>
-        <th>Niveles</th>
-        <th>Frecuencia</th>
-      </thead>
-      <tbody>
-        <tr v-for="site in sites" :key="site.id">
-          <td>{{ site.name }}</td>
-          <td>{{ site.url }}</td>
-          <td>{{ site.max_depth }}</td>
-          <td>{{ site.frequency }}</td>
-          <td><RouterLink :to="{ name: 'site-detail', params: {id: site.id}}">Ingresar</RouterLink></td>
-        </tr>  
-      </tbody>
-    </v-table>
+    <div class="recuadro-large">
+      <h1>Tus sitios</h1>
+      <v-divider></v-divider>
+      <v-table>
+        <thead>
+          <th>Nombre</th>
+          <th>URL</th>
+          <th>Niveles</th>
+          <th>Frecuencia</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr v-for="site in sites" :key="site.id">
+            <td>{{ site.name }}</td>
+            <td>{{ site.url }}</td>
+            <td>{{ site.max_depth }}</td>
+            <td>{{ site.frequency }}</td>
+            <td><RouterLink :to="{ name: 'site-detail', params: {id: site.id}}">Ingresar</RouterLink></td>
+          </tr>  
+        </tbody>
+      </v-table>
+    </div>
   </v-container>
 </template>
 <style>

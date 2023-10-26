@@ -23,18 +23,15 @@ function saveSite(){
       e => {error.value = true}
     )
 }
-
-console.log(site)
-
 </script>
 <template>
   <v-container>
+    <div class="recuadro-small">
     <h1>Cargar nueva URL</h1>
-    <v-sheet>
       <v-alert 
         v-if="success"
         type="success"
-        title="URL cargada correctamente">
+        title="La URL se cargó correctamente">
       </v-alert>
       <v-alert 
         v-if="error"
@@ -63,12 +60,11 @@ console.log(site)
           required>
         </v-text-field>
         <v-btn @click="saveSite()"
-          block color="grey"
           :disabled="!validForm()">
           Guardar
         </v-btn>
       </v-form>
-    </v-sheet>
+    </div>
   </v-container>
 </template>
 <style>

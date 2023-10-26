@@ -69,37 +69,44 @@ function deleteSite(){
           </tbody>
         </v-table>
       </v-col>
-      <v-col cols="3">
-        <v-btn><RouterLink :to="{ name: 'update-site', params: {id: site.id}}">Cambiar Configuración</RouterLink></v-btn>
-        <v-btn @click="deleteSite()">Eliminar</v-btn>
+      <v-col cols="1">
+        <v-btn icon>
+          <RouterLink :to="{ name: 'update-site', params: {id: site.id}}"><v-icon>mdi-application-cog</v-icon></RouterLink>
+        </v-btn>
+      </v-col>
+      <v-col cols="1">
+        <v-btn icon @click="deleteSite()">
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
       </v-col>
       <v-col cols="2">
         <v-btn>Buscar</v-btn>
       </v-col>
     </v-row>
-    <v-table>
-      <thead>
-        <th>URL</th>
-        <th>Última actualización</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{ site.url }}/home</td>
-          <td>14 de septiembre</td>
-        </tr>  
-      </tbody>
-    </v-table>
+    <div class="recuadro-large">
+      <h1>Páginas registradas</h1>
+      <v-table>
+        <thead>
+          <th>URL</th>
+          <th>Última actualización</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ site.url }}/home</td>
+            <td>14 de septiembre</td>
+          </tr>  
+        </tbody>
+      </v-table>
+  </div>
   </v-container>
 </template>
 <style>
   @import "../assets/styles/General.css";
-  .v-sheet{
-    width: 55%;
+
+  .v-breadcrumbs{
+    margin-bottom: 5%;
   }
-  thead, tbody {
-    display: flex;
-  }
-  tr {
-    display: flex;
-  }
+  .v-breadcrumbs-divider,.v-breadcrumbs-item{
+    width: fit-content;
+  }  
 </style>

@@ -33,9 +33,6 @@ function saveSite(){
     )
 }
 
-console.log(site)
-console.log(siteAct)
-
 </script>
 <template>
   <v-container>
@@ -47,17 +44,21 @@ console.log(siteAct)
 		  },
 		  {
 			title: `${site.url}`,
-			disabled: true,
-			href: '#',
+			disabled: false,
+			href: `/sites/${site.id}`,
 		  },
+      {
+			title: 'Modificar configuración',
+			disabled: false,
+			to: '#',
+		  }
 		]">
       <template v-slot:divider>
         <v-icon icon="mdi-chevron-right"></v-icon>
       </template>
 	  </v-breadcrumbs>
-    
+    <div class="recuadro-small">
     <h1>Modificar parámetros URL</h1>
-    <v-sheet>
       <v-alert 
         v-if="success"
         type="success"
@@ -90,12 +91,11 @@ console.log(siteAct)
           required>
         </v-text-field>
         <v-btn @click="saveSite()"
-          block color="grey"
           :disabled="!validForm()">
           Guardar
         </v-btn>
       </v-form>
-    </v-sheet>
+    </div>
   </v-container>
 </template>
 <style>
