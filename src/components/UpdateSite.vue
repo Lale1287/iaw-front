@@ -26,7 +26,7 @@ function validForm(){
 }
 
 function saveSite(){
-    SiteService.update(siteAct.value).then(
+    SiteService.update(site.value.id, site.value).then(
         result => {success.value = true}
     ).catch(
       e => {error.value = true}
@@ -56,7 +56,7 @@ console.log(siteAct)
       </template>
 	  </v-breadcrumbs>
     
-    <h1>Cargar nueva URL</h1>
+    <h1>Modificar parámetros URL</h1>
     <v-sheet>
       <v-alert 
         v-if="success"
@@ -70,22 +70,22 @@ console.log(siteAct)
       </v-alert>
       <v-form>
         <v-text-field
-          v-model="site.name"
+          v-model="siteAct.name"
           label="Nombre"
           required>
         </v-text-field>
         <v-text-field
-          v-model="site.url"
+          v-model="siteAct.url"
           label="URL"
           required>
         </v-text-field>
         <v-text-field
-          v-model.number="site.max_depth"
+          v-model.number="siteAct.max_depth"
           label="Niveles"
           required>
         </v-text-field>
         <v-text-field
-          v-model="site.frequency"
+          v-model="siteAct.frequency"
           label="Frecuencia"
           required>
         </v-text-field>

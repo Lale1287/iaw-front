@@ -68,12 +68,17 @@ function deleteSite(){
         </v-table>
       </v-col>
       <v-col cols="3">
-        <v-btn><td><RouterLink :to="{ name: 'update-site', params: {id: site.id}}">Cambiar Configuración</RouterLink></td></v-btn>
+        <v-btn><RouterLink :to="{ name: 'update-site', params: {id: site.id}}">Cambiar Configuración</RouterLink></v-btn>
+        <v-btn @click="deleteSite()">Eliminar</v-btn>
       </v-col>
       <v-col cols="2">
         <v-btn>Buscar</v-btn>
       </v-col>
     </v-row>
+    <template>
+      <v-alert v-if="success" type="success" title="Se eliminó correctamente"></v-alert>
+      <v-alert v-if="error" type="error" title="No se pudo eliminar el sitio"></v-alert>
+    </template>
     <v-table>
       <thead>
         <th>URL</th>

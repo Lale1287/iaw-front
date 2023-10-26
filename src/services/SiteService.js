@@ -30,7 +30,7 @@ class SiteService{
 
     delete(id){
         return new Promise((resolve, reject) => {
-            this.service.delete('/sites/${id}').then(res =>{
+            this.service.delete(`/sites/${id}`).then(res =>{
                 resolve(res.data)
             }).catch(err =>{
                 reject(err)
@@ -48,9 +48,9 @@ class SiteService{
         })
     }
 
-    update(id){
+    update(id, payload){
         return new Promise((resolve, reject) => {
-            this.service.put('/sites/${id}').then(res =>{
+            this.service.put(`/sites/${id}`, payload).then(res => {
                 resolve(res.data)
             }).catch(err =>{
                 reject(err)
