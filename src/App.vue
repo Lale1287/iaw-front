@@ -28,7 +28,10 @@ onMounted(() => setAuthStore())
 <template> 
   <v-app>
     <v-app-bar>
-      <v-app-bar-title>Bienvenido Usuario</v-app-bar-title>
+      <div>
+        <v-app-bar-title v-if="isAuthenticated">Hola {{ user.name }}</v-app-bar-title>
+        <v-app-bar-title v-if="!isAuthenticated">Hola!</v-app-bar-title>
+      </div>
       <v-spacer></v-spacer>
       <template v-if="isAuthenticated">
         <v-btn icon>
