@@ -1,12 +1,29 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import LoginButton from "@/components/buttons/login-button.vue";
+import LogoutButton from "@/components/buttons/logout-button.vue";
+import SignUpButton from "@/components/buttons/signup-button.vue";
+import { useAuth0 } from "@auth0/auth0-vue";
+
+const { isAuthenticated } = useAuth0();
 </script>
 
-<template>
-   <v-header>
-    
-   </v-header> 
+<template> 
   <v-app>
+    <v-app-bar>
+      <v-app-bar-title>Bienvenido Usuario</v-app-bar-title>
+      <v-spacer></v-spacer>
+      <v-btn icon v-if="isAuthenticated">
+        <RouterLink to="/sitios"><v-icon>mdi-home</v-icon></RouterLink>
+      </v-btn>
+      <template v-if="!isAuthenticated">
+        <LoginButton />
+        <SignUpButton />
+      </template>
+      <template v-if="isAuthenticated">
+        <LogoutButton />
+      </template>
+    </v-app-bar>
     <v-main>
       <RouterView />
     </v-main>
@@ -17,42 +34,15 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 
 <style scoped>
-/*header {
-  line-height: 1.5;
-  max-height: 100vh;
+.v-app-bar{
+box-shadow: none!important;;
 }
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.v-app-bar-title{
+	flex: 1 1 auto;
 }
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+.v-btn{
+	text-align: end;
+	margin-inline-end: 16px;
+  width: auto;
 }
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}*/
 </style>

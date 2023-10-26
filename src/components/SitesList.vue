@@ -2,7 +2,6 @@
 import {ref} from 'vue'
 import { onBeforeMount } from 'vue'
 import SiteService from '../services/SiteService'
-import Nav from '../components/Nav.vue';
 
 const sites = ref([])
 
@@ -18,7 +17,6 @@ console.log(sites)
 
 </script>
 <template>
-  <Nav></Nav>
   <v-container>
     <v-btn><RouterLink to="/sites/new">Nueva URL</RouterLink></v-btn>
     <h1>Tus sitios</h1>
@@ -36,7 +34,7 @@ console.log(sites)
           <td>{{ site.url }}</td>
           <td>{{ site.max_depth }}</td>
           <td>{{ site.frequency }}</td>
-          <td><RouterLink :to="{ name: 'site-detail', params: {id: site.id, url: site.url}}">Ingresar</RouterLink></td>
+          <td><RouterLink :to="{ name: 'site-detail', params: {id: site.id}}">Ingresar</RouterLink></td>
         </tr>  
       </tbody>
     </v-table>

@@ -1,10 +1,10 @@
 <script setup>
-import Home from '../components/Home.vue'
+import UpdateSite from '../components/UpdateSite.vue'
 import { RouterLink } from 'vue-router';
 </script>
 
 <template>
   <main>
-    <Home />
+    <UpdateSite />
   </main>
 </template>

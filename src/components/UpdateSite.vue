@@ -1,13 +1,22 @@
 <script setup>
 import {ref} from 'vue'
+import { onBeforeMount } from 'vue'
+import { useRoute } from 'vue-router';
 import SiteService from '../services/SiteService'
 
-const site = ref({
-  'name':'',
-  'url':'',
-  'max_depth':'',
-  'frequency':'',
-})
+const route = useRoute()
+
+const site = ref({})
+
+function setSite(){
+    SiteService.get(route.params.id).then(
+        result => site.value = result
+    )
+}
+
+onBeforeMount(()=>setSite())
+
+const siteAct = site
 
 const error = ref(false)
 const success = ref(false)
@@ -17,7 +26,7 @@ function validForm(){
 }
 
 function saveSite(){
-    SiteService.create(site.value).then(
+    SiteService.update(siteAct.value).then(
         result => {success.value = true}
     ).catch(
       e => {error.value = true}
@@ -25,21 +34,39 @@ function saveSite(){
 }
 
 console.log(site)
+console.log(siteAct)
 
 </script>
 <template>
   <v-container>
+    <v-breadcrumbs :items="[
+		  {
+			title: 'Tus sitios',
+			disabled: false,
+			to: '/sites',
+		  },
+		  {
+			title: `${site.url}`,
+			disabled: true,
+			href: '#',
+		  },
+		]">
+      <template v-slot:divider>
+        <v-icon icon="mdi-chevron-right"></v-icon>
+      </template>
+	  </v-breadcrumbs>
+    
     <h1>Cargar nueva URL</h1>
     <v-sheet>
       <v-alert 
         v-if="success"
         type="success"
-        title="URL cargada correctamente">
+        title="La URL se modificó correctamente">
       </v-alert>
       <v-alert 
         v-if="error"
         type="error"
-        title="No se pudo cargar la URL">
+        title="No se pudo modificar la URL">
       </v-alert>
       <v-form>
         <v-text-field
@@ -73,5 +100,13 @@ console.log(site)
 </template>
 <style>
   @import "../assets/styles/General.css";
-
+  .v-sheet{
+    width: 55%;
+  }
+  thead, tbody {
+    display: flex;
+  }
+  tr {
+    display: flex;
+  }
 </style>

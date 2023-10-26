@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LogInView from '../views/LogInView.vue'
+import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'login',
-      component: LogInView
+      name: 'home',
+      component: HomeView
     },
     {
       path: '/sites',
@@ -26,6 +26,11 @@ const router = createRouter({
       path: '/sites/:id',
       name: 'site-detail',
       component: () => import('../views/SiteDetailView.vue')
+    },
+    {
+      path: '/sites/update/:id',
+      name: 'update-site',
+      component: () => import('../views/UpdateSiteView.vue')
     }
   ]
 })

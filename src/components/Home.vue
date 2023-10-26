@@ -8,10 +8,10 @@ import btnIn from '../components/Btns.vue';
     <v-sheet max-width="400" class="mx-auto">
     <v-form validate-on="submit lazy" @submit.prevent="submit">
       <img src="../assets/icon-web-search.png">
-      <v-text-field
-        label="Iniciar sesión"
-      ></v-text-field>
-      <RouterLink to="/sites"><btnIn label="Google"><v-icon >backup</v-icon></btnIn></RouterLink>
+      <h1> Iniciar sesión </h1>
+      <template>
+        <LoginButton />
+      </template>
     </v-form>
   </v-sheet>
 </template>

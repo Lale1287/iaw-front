@@ -47,5 +47,15 @@ class SiteService{
             })
         })
     }
+
+    update(id){
+        return new Promise((resolve, reject) => {
+            this.service.put('/sites/${id}').then(res =>{
+                resolve(res.data)
+            }).catch(err =>{
+                reject(err)
+            })
+        })
+    }
 }
 export default new SiteService();
