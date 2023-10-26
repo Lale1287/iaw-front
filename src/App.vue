@@ -32,7 +32,7 @@ onMounted(() => setAuthStore())
       <v-spacer></v-spacer>
       <template v-if="isAuthenticated">
         <v-btn icon>
-          <RouterLink to="/sitios"><v-icon>mdi-home</v-icon></RouterLink>
+          <RouterLink to="/sites"><v-icon>mdi-home</v-icon></RouterLink>
         </v-btn>
         <v-btn icon>
           <RouterLink to="/profile"><v-icon>mdi-account</v-icon></RouterLink>
