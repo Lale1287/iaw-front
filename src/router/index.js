@@ -20,6 +20,12 @@ const router = createRouter({
       component: () => import('../views/SitesListView.vue')
     },
     {
+      path: '/profile',
+      name: 'profile',
+      beforeEnter: authGuard,
+      component: () => import('../views/UserProfileView.vue')
+    },
+    {
       path: '/sites/new',
       name: 'new-site',
       beforeEnter: authGuard,
