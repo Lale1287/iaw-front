@@ -78,3 +78,9 @@ td{
 .recuadro-small h1{
     margin-bottom: 5%;
 }
+.v-breadcrumbs{
+    margin-bottom: 5%;
+  }
+.v-breadcrumbs-divider,.v-breadcrumbs-item{
+    width: fit-content;
+  }  

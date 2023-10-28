@@ -32,7 +32,7 @@ function saveSite(){
       e => {error.value = true}
     )
 }
-
+console.log(site.value)
 </script>
 <template>
   <v-container>
@@ -58,16 +58,16 @@ function saveSite(){
       </template>
 	  </v-breadcrumbs>
     <div class="recuadro-small">
-    <h1>Modificar parámetros URL</h1>
+    <h1>Modificar parámetros del sitio</h1>
       <v-alert 
         v-if="success"
         type="success"
-        title="La URL se modificó correctamente">
+        title="El sitio se modificó correctamente">
       </v-alert>
       <v-alert 
         v-if="error"
         type="error"
-        title="No se pudo modificar la URL">
+        title="No se pudo modificar el sitio">
       </v-alert>
       <v-form>
         <v-text-field
@@ -85,11 +85,14 @@ function saveSite(){
           label="Niveles"
           required>
         </v-text-field>
-        <v-text-field
-          v-model="siteAct.frequency"
+        <v-select
+          v-model="site.frequency"
           label="Frecuencia"
+          density="compact"
+          :items="['Diaria', 'Semanal', 'Mensual']"
+          :menu-props="{maxWidth: 100}"
           required>
-        </v-text-field>
+        </v-select>
         <v-btn @click="saveSite()"
           :disabled="!validForm()">
           Guardar
@@ -108,5 +111,8 @@ function saveSite(){
   }
   tr {
     display: flex;
+  }
+  .v-select .v-select__selection-text{
+    text-align: left;
   }
 </style>

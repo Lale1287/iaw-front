@@ -1,5 +1,5 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router';
 import LoginButton from "@/components/buttons/login-button.vue";
 import LogoutButton from "@/components/buttons/logout-button.vue";
 import SignUpButton from "@/components/buttons/signup-button.vue";
@@ -28,9 +28,9 @@ onMounted(() => setAuthStore())
 <template> 
   <v-app>
     <v-app-bar>
-      <div>
-        <v-app-bar-title v-if="isAuthenticated">Hola {{ user.name }}</v-app-bar-title>
+      <div class="usname">
         <v-app-bar-title v-if="!isAuthenticated">Hola!</v-app-bar-title>
+        <v-app-bar-title v-else>Hola {{ user.name }}</v-app-bar-title>      
       </div>
       <v-spacer></v-spacer>
       <template v-if="isAuthenticated">
@@ -62,6 +62,9 @@ box-shadow: none!important;;
 }
 .v-app-bar-title{
 	flex: 1 1 auto;
+}
+.usname{
+  margin-left:2%;
 }
 .v-btn{
 	text-align: end;

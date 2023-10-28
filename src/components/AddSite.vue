@@ -26,17 +26,33 @@ function saveSite(){
 </script>
 <template>
   <v-container>
+    <v-breadcrumbs :items="[
+		  {
+			title: 'Tus sitios',
+			disabled: false,
+			to: '/sites',
+		  },
+		  {
+			title: 'Nuevo sitio',
+			disabled: true,
+			href: '#',
+		  },
+		]">
+      <template v-slot:divider>
+        <v-icon icon="mdi-chevron-right"></v-icon>
+      </template>
+	  </v-breadcrumbs>
     <div class="recuadro-small">
-    <h1>Cargar nueva URL</h1>
+    <h1>Cargar nuevo sitio</h1>
       <v-alert 
         v-if="success"
         type="success"
-        title="La URL se cargó correctamente">
+        title="El sitio se cargó correctamente">
       </v-alert>
       <v-alert 
         v-if="error"
         type="error"
-        title="No se pudo cargar la URL">
+        title="No se pudo cargar el sitio">
       </v-alert>
       <v-form>
         <v-text-field
@@ -54,11 +70,14 @@ function saveSite(){
           label="Niveles"
           required>
         </v-text-field>
-        <v-text-field
+        <v-select
           v-model="site.frequency"
           label="Frecuencia"
+          density="compact"
+          :items="['Diaria', 'Semanal', 'Mensual']"
+          :menu-props="{maxWidth: 100}"
           required>
-        </v-text-field>
+        </v-select>
         <v-btn @click="saveSite()"
           :disabled="!validForm()">
           Guardar
@@ -69,5 +88,8 @@ function saveSite(){
 </template>
 <style>
   @import "../assets/styles/General.css";
-
+  
+  .v-select .v-select__selection-text{
+    text-align: left;
+  }
 </style>

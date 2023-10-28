@@ -1,5 +1,5 @@
 <script setup>
-    import { userAuthStore } from '@/stores/userAuthStore.js'
+    import { userAuthStore } from '@/stores/userAuthStore.js';
     const authStore = userAuthStore()
     const user = authStore.getUserData
     const accessToken = authStore.getToken
