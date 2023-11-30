@@ -2,6 +2,7 @@
 import {ref} from 'vue'
 import { onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router';
+import router from '../router';
 import SiteService from '../services/SiteService'
 
 const route = useRoute()
@@ -30,7 +31,8 @@ function saveSite(){
         result => {success.value = true}
     ).catch(
       e => {error.value = true}
-    )
+    );
+    this.router.push('/sites/'+this.site.id)
 }
 console.log(site.value)
 </script>
@@ -93,7 +95,7 @@ console.log(site.value)
           :menu-props="{maxWidth: 100}"
           required>
         </v-select>
-        <v-btn @click="saveSite()"
+        <v-btn @click.stop.prevent="saveSite()"
           :disabled="!validForm()">
           Guardar
         </v-btn>

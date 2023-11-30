@@ -7,6 +7,7 @@ const site = ref({
   'url':'',
   'max_depth':'',
   'frequency':'',
+  'document_extractor': '(cheerio)=>(\n return {attr: cheerio("elem")}\n)'
 })
 
 const error = ref(false)
@@ -78,6 +79,11 @@ function saveSite(){
           :menu-props="{maxWidth: 100}"
           required>
         </v-select>
+        <v-textarea
+          v-model.number="site.document_extractor"
+          label="Extractor"
+          required>
+        </v-textarea>
         <v-btn @click="saveSite()"
           :disabled="!validForm()">
           Guardar
