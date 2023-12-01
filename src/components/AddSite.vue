@@ -7,7 +7,7 @@ const site = ref({
   'url':'',
   'max_depth':'',
   'frequency':'',
-  'document_extractor': '(cheerio)=>(\n return {attr: cheerio("elem")}\n)'
+  'document_extractor': '(cheerio)=>{\n return {attr: cheerio("elem")}\n}'
 })
 
 const error = ref(false)
