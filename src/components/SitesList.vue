@@ -2,12 +2,13 @@
 import {ref} from 'vue'
 import { onBeforeMount } from 'vue'
 import SiteService from '../services/SiteService'
+import { client } from '../types/APIClient';
 
 const sites = ref([])
 
 function setSites(){
-    SiteService.getSites().then(
-        result => sites.value = result
+  client['SiteController.find']().then(
+        result => sites.value = result.data
     )
 }
 
