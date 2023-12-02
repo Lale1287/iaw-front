@@ -1,6 +1,7 @@
 <script setup>
 import {ref} from 'vue'
 import SiteService from '../services/SiteService'
+import { client } from '../types/APIClient';
 
 const site = ref({
   'name':'',
@@ -18,7 +19,7 @@ function validForm(){
 }
 
 function saveSite(){
-    SiteService.create(site.value).then(
+    client['SiteController.create'](null,site.value).then(
         result => {success.value = true}
     ).catch(
       e => {error.value = true}

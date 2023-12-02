@@ -3,6 +3,7 @@ import {ref} from 'vue'
 import { onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router';
 import SiteService from '../services/SiteService'
+import { client } from '../types/APIClient';
 
 const route = useRoute()
 
@@ -11,8 +12,8 @@ const error = ref(false)
 const success = ref(false)
 
 function setSite(){
-    SiteService.get(route.params.id).then(
-        result => site.value = result
+    client['SiteController.findById'](route.params.id).then(
+        result => site.value = result.data
     )
 }
 
@@ -21,7 +22,7 @@ onBeforeMount(()=>setSite())
 function deleteSite(){
   success.value = false
   error.value = false
-  SiteService.delete(site.value.id).then(res => {
+  client['SiteController.deleteById'](site.value.id).then(res => {
     success.value = true
     site.value = false
   }).catch( e => {

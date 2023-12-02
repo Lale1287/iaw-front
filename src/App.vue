@@ -7,6 +7,7 @@ import SignUpButton from "@/components/buttons/signup-button.vue";
 import { useAuth0 } from "@auth0/auth0-vue";
 import { userAuthStore } from '@/stores/userAuthStore.js';
 import { onMounted } from 'vue';
+import { client } from './types/APIClient';
 
 const { isAuthenticated } = useAuth0();
 const { user } = useAuth0();
@@ -16,6 +17,7 @@ const authStore = userAuthStore()
 async function setAuthStore(){
   if(isAuthenticated){
     const token = await getAccessTokenSilently();
+    client.defaults.headers['authorization'] = `Bearer ${token}`;
     authStore.login(token, user.value)
   } else{
     authStore.logout()

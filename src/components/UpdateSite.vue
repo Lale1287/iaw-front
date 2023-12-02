@@ -4,14 +4,15 @@ import { onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router';
 import router from '../router';
 import SiteService from '../services/SiteService'
+import { client } from '../types/APIClient';
 
 const route = useRoute()
 
 const site = ref({})
 
 function setSite(){
-    SiteService.get(route.params.id).then(
-        result => site.value = result
+    client['SiteController.findById'](route.params.id).then(
+        result => site.value = result.data
     )
 }
 
@@ -27,7 +28,7 @@ function validForm(){
 }
 
 function saveSite(){
-    SiteService.update(site.value.id, site.value).then(
+    client['SiteController.updateById'](site.value.id, site.value).then(
         result => {success.value = true}
     ).catch(
       e => {error.value = true}
